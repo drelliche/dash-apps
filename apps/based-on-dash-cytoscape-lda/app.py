@@ -183,18 +183,18 @@ navbar = dbc.NavbarSimple(
     children=[
         dbc.NavItem(
             dbc.NavLink(
-                "Article",
+                "Original Article",
                 href="https://medium.com/plotly/exploring-and-investigating-network-relationships-with-plotlys-dash-and-dash-cytoscape-ec625ef63c59?source=friends_link&sk=e70d7561578c54f35681dfba3a132dd5",
             )
         ),
         dbc.NavItem(
             dbc.NavLink(
-                "Source Code",
+                "Origial Source Code",
                 href="https://github.com/plotly/dash-sample-apps/tree/master/apps/dash-cytoscape-lda",
             )
         ),
     ],
-    brand="Plotly dash-cytoscape demo - CORD-19 LDA analysis output",
+    brand="Can we make this a DART Module Navigation tool?",
     brand_href="#",
     color="dark",
     dark=True,
