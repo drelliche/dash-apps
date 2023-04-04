@@ -30,6 +30,7 @@ server = app.server
 
 # network_df = pd.read_csv('outputs/network_df.csv', index_col=0)  # ~8300 nodes
 network_df = pd.read_csv("outputs/network_df_sm.csv", index_col=0)  # ~4700 nodes
+# network_df = pd.read_csv("outputs/module_data.csv", index_col=0)
 
 # Prep data / fill NAs
 network_df["citations"] = network_df["citations"].fillna("")
@@ -68,7 +69,7 @@ def get_node_list(in_df):  # Convert DF data to node list for cytoscape
             "position": {"x": tsne_to_cyto(row["x"]), "y": tsne_to_cyto(row["y"])},
             "classes": row["topic_id"],
             "selectable": True,
-            "grabbable": False,
+            "grabbable": True,
         }
         for i, row in in_df.iterrows()
     ]
@@ -282,13 +283,17 @@ body_layout = dbc.Container(
                         dbc.Row(
                             [
                                 cyto.Cytoscape(
-                                    id="core_19_cytoscape",
-                                    layout={"name": "preset"},
-                                    style={"width": "100%", "height": "400px"},
-                                    elements=startup_elm_list,
-                                    stylesheet=def_stylesheet,
-                                    minZoom=0.06,
+        id='cytoscape-two-nodes',
+        layout={'name': 'cose'},  ### cose is the name for force directed graph
+        style={'width': '100%', 'height': '400px'},
+        elements=[
+            {'data': {'id': 'one', 'label': 'Node 1'}, 'position': {'x': 75, 'y': 75}},
+            {'data': {'id': 'two', 'label': 'Node 2'}, 'position': {'x': 200, 'y': 200}},
+            {'data': {'source': 'one', 'target': 'two'}}
+        ]
                                 )
+
+                                ### This is the end of where the graph is defined.
                             ]
                         ),
                         dbc.Row(
